@@ -1,0 +1,13 @@
+{
+  "name": "Arduino Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "settings": {
+    "arduino.path": "/opt/arduino",
+    "arduino.logLevel": "verbose"
+  },
+  "extensions": [
+    "vsciot-vscode.vscode-arduino"
+  ]
+}
