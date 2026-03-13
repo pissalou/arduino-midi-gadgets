@@ -13,14 +13,16 @@ RUN mkdir -p /opt/arduino-cli \
 
 # Project specific section
 # ========================
-
-# Install extra board support for ATtiny85
-RUN arduino-cli config add board_manager.additional_urls https://raw.githubusercontent.com/per1234/ReleaseScripts/refs/heads/provisional-package-index/package_drazzy.com_index.json \
+# Install extra board support for ATtiny85 globally
+ENV ARDUINO_DIRECTORIES_DATA=/opt/arduino-cli 
+RUN arduino-cli config init --additional-urls https://raw.githubusercontent.com/per1234/ReleaseScripts/refs/heads/provisional-package-index/package_drazzy.com_index.json \ 
     && arduino-cli core update-index \
     && arduino-cli core search attiny \
     && arduino-cli core install ATTinyCore:avr \
-    && arduino-cli board listall ATtiny85
+    && arduino-cli board listall ATtiny85 \ 
+    && arduino-cli config dump --verbose
 
 # Install any extern libraries here. Example:
 # Install LiquidCrystal I2C library
 # RUN arduino-cli lib install "LiquidCrystal I2C"
+    
