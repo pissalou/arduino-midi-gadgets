@@ -1,0 +1,10 @@
+build/*
+packages/*
+staging/*
+tmp/*
+inventory.yaml
+library_*.json
+library_*.json.sig
+package_*.json
+package_*.json.sig
+wokwi-cli*
