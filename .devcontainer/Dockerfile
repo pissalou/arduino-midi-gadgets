@@ -29,6 +29,10 @@ RUN arduino-cli config init --additional-urls https://raw.githubusercontent.com/
     && arduino-cli board listall ATtiny85 \ 
     && arduino-cli config dump --verbose
 
+RUN arduino-cli core install arduino:avr \
+    && arduino-cli board listall UNO
+
+
 # Install any extern libraries here. Example:
 # Install LiquidCrystal I2C library
 # RUN arduino-cli lib install "LiquidCrystal I2C"
