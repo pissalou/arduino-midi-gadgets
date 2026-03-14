@@ -1,0 +1,5 @@
+[wokwi]
+version = 1
+firmware = 'build/arduino-midi-gadgets.ino.hex'
+elf = 'build/arduino-midi-gadgets.ino.elf'
+diagram = 'diagram.json'

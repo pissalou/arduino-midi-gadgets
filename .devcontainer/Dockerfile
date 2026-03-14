@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/vscode/devcontainers/cpp:debian
 
 ARG ARDUINO_CLI_VERSION=1.4.1
+ARG WOKWI_CLI_VERSION=0.26.1
 
 # Install Arduino CLI
 RUN mkdir -p /opt/arduino-cli \
@@ -10,6 +11,12 @@ RUN mkdir -p /opt/arduino-cli \
     && rm -f arduino-cli_${ARDUINO_CLI_VERSION}_Linux_64bit.tar.gz \
     && ln -s /opt/arduino-cli/arduino-cli /usr/local/bin/arduino-cli \
     && arduino-cli version | grep -E "Version: ${ARDUINO_CLI_VERSION}"
+
+# Install Wokwi CLI
+RUN wget https://github.com/wokwi/wokwi-cli/releases/download/v${WOKWI_CLI_VERSION}/wokwi-cli-linuxstatic-x64 \
+    && chmod +x wokwi-cli-linuxstatic-x64 \
+    && mv wokwi-cli-linuxstatic-x64 /usr/local/bin/wokwi-cli \
+    && wokwi-cli --version | grep -E "${WOKWI_CLI_VERSION}"
 
 # Project specific section
 # ========================

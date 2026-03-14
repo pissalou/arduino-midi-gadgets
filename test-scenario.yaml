@@ -1,0 +1,19 @@
+name: 'MIDI Program Change Test'
+version: 1
+steps:
+  # 1. Wait for Arduino to boot
+  - wait-serial: 'MIDI Serial Initialized'
+
+  # 2. Send MIDI PC Message (Channel 1, Program 1)
+  # Wokwi automation can send text to the serial port
+  # Ensure your code interprets '1' as a manual test or uses a buffer
+  - write-serial: [0xC1, 0x01] # MIDI Program Change on Channel 1, Program 1
+
+  # 3. Wait for the MIDI message to be received
+  - wait-serial: 'MIDI Received: #C11'
+
+  # 4. Check for the pin to be HIGH
+  - expect-pin:
+      part-id: 'uno'
+      pin: '13'
+      value: 1 # HIGH
