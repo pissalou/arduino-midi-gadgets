@@ -28,7 +28,14 @@ RUN arduino-cli config init --additional-urls https://raw.githubusercontent.com/
     && arduino-cli core install ATTinyCore:avr \
     && arduino-cli board listall ATtiny85 \ 
     && arduino-cli config dump --verbose
-
+# Install extra board support for Raspberry Pico 2 globally
+RUN arduino-cli config init --additional-urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \ 
+    && arduino-cli core update-index \
+    && arduino-cli core search rp2040 \
+    && arduino-cli core install rp2040:rp2040 \
+    && arduino-cli board listall Waveshare_RP2350B_Plus_w \ 
+    && arduino-cli config dump --verbose
+# Install extra board support for Arduino globally
 RUN arduino-cli core install arduino:avr \
     && arduino-cli board listall UNO
 
@@ -36,4 +43,3 @@ RUN arduino-cli core install arduino:avr \
 # Install any extern libraries here. Example:
 # Install LiquidCrystal I2C library
 # RUN arduino-cli lib install "LiquidCrystal I2C"
-    
