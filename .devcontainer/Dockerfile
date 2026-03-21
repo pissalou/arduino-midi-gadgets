@@ -29,7 +29,7 @@ RUN arduino-cli config init --additional-urls https://raw.githubusercontent.com/
     && arduino-cli board listall ATtiny85 \ 
     && arduino-cli config dump --verbose
 # Install extra board support for Raspberry Pico 2 globally
-RUN arduino-cli config init --additional-urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \ 
+RUN arduino-cli config add board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json \ 
     && arduino-cli core update-index \
     && arduino-cli core search rp2040 \
     && arduino-cli core install rp2040:rp2040 \
