@@ -40,6 +40,7 @@ RUN arduino-cli core install arduino:avr \
     && arduino-cli board listall UNO
 
 
-# Install any extern libraries here. Example:
-# Install LiquidCrystal I2C library
-# RUN arduino-cli lib install "LiquidCrystal I2C"
+# Install any extern libraries also globally
+ENV ARDUINO_DIRECTORIES_USER=/opt/arduino-cli
+RUN arduino-cli lib install "MIDI Library" \
+    && arduino-cli lib list
